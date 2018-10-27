@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../style/write.css">
+        <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <a href="/" class="logo">Daily Writing Goals</a>
+            <div class="header-right">
+                <a href="/write">Write</a>
+                <a href="/quotes">Favorite Quotes</a>
+                <a href="/resources">Resources</a>
+                <a href="/about">About</a>
+                <a class="login" href="{{link}}">{{status}}</a>
+            </div>
+        </div>
+        <h3 style="text-align: center;">Choose a restriction</h3>
+        <div class="buttons" style="width: 100%;">
+            <button style="width:33.3%" id="timed">Timed Writing</button>
+            <button style="width:33.4%" id="wordcount">Word Count</button>
+            <button style="width:33.3%" id="nolimit">No Limits</button>
+        </div>
+        <br>
+        <h3 style="text-align: center;">Choose a mode</h3>
+        <div class="buttons" id="mode-buttons" style="width: 100%;">
+            <button style="width:33.3%" id="plot">Generate a Plot</button>
+            <button style="width:33.3%" id="oneword">One Word Writing</button>
+            <button style="width:33.3%" id="free">Free Write</button>
+        </div>
+        <br>
+        <table style="width: 80%; text-align: center;" align="center">
+            <tr>
+                <td id="time-buttons">
+                    Time Limit:
+                    <div class="btn" style="width: 100%">
+                        <button id="five">5 minutes</button>
+                        <button id="ten">10 minutes</button>
+                        <button id="fifteen">15 minutes</button>
+                        <button id="thirty">30 minutes</button>
+                    </div>
+                </td>
+                <td id="word-buttons">
+                    Word Limit:
+                    <div class="btn" style="width: 100%">
+                        <button id="hundred">100 words</button>
+                        <button id="twofifty">250 words</button>
+                        <button id="fivehundred">500 words</button>
+                        <button id="thousand">1000 words</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p style="text-align: center;">{{check}}</p>
+        <form method="post" action="/write">
+            <input type="hidden" name="restriction" id="restriction" value="">
+            <input type="hidden" name="mode" id="mode" value="">
+            <input type="hidden" name="limits" id="limits" value="">
+            <div id="submit">
+                <input type="submit" value="Start Writing!">
+            </div>
+        </form>
+        {% if check == "" %}
+            <p style="text-align: center;">Click <a href="/writings">here</a> to see your saved works.</p>
+        {% endif %}
+        <script>
+        $(document).ready(function() {
+            $('#time-buttons').hide();
+            $('#word-buttons').hide();
+            $('#timed').on("click", function() {
+                $('#timed').toggleClass("active");
+                $('#wordcount').removeClass("active");
+                $('#nolimit').removeClass("active");
+                $('#time-buttons').toggle();
+                $('#word-buttons').hide();
+                $('#restriction').val(1);
+            });
+            $('#wordcount').on("click", function() {
+                $('#timed').removeClass("active");
+                $('#wordcount').toggleClass("active");
+                $('#nolimit').removeClass("active");
+                $('#time-buttons').hide();
+                $('#word-buttons').toggle();
+                $('#restriction').val(2);
+            });
+            $('#nolimit').on("click", function() {
+                $('#timed').removeClass("active");
+                $('#wordcount').removeClass("active");
+                $('#nolimit').toggleClass("active");
+                $('#time-buttons').hide();
+                $('#word-buttons').hide();
+                $('#restriction').val(3);
+            });
+            $('#plot').on("click", function() {
+                $('#plot').toggleClass("active");
+                $('#oneword').removeClass("active");
+                $('#free').removeClass("active");
+                $('#mode').val(1);
+            });
+            $('#oneword').on("click", function() {
+                $('#plot').removeClass("active");
+                $('#oneword').toggleClass("active");
+                $('#free').removeClass("active");
+                $('#mode').val(2);
+            });
+            $('#free').on("click", function() {
+                $('#plot').removeClass("active");
+                $('#oneword').removeClass("active");
+                $('#free').toggleClass("active");
+                $('#mode').val(3);
+            });
+            $('#five').on("click", function() {
+                $('#five').toggleClass("active");
+                $('#ten').removeClass("active");
+                $('#fifteen').removeClass("active");
+                $('#thirty').removeClass("active");
+                $('#limits').val(1);
+            });
+            $('#ten').on("click", function() {
+                $('#five').removeClass("active");
+                $('#ten').toggleClass("active");
+                $('#fifteen').removeClass("active");
+                $('#thirty').removeClass("active");
+                $('#limits').val(2);
+            });
+            $('#fifteen').on("click", function() {
+                $('#five').removeClass("active");
+                $('#ten').removeClass("active");
+                $('#fifteen').toggleClass("active");
+                $('#thirty').removeClass("active");
+                $('#limits').val(3);
+            });
+            $('#thirty').on("click", function() {
+                $('#five').removeClass("active");
+                $('#ten').removeClass("active");
+                $('#fifteen').removeClass("active");
+                $('#thirty').toggleClass("active");
+                $('#limits').val(4);
+            });
+            $('#hundred').on("click", function() {
+                $('#hundred').toggleClass("active");
+                $('#twofifty').removeClass("active");
+                $('#fivehundred').removeClass("active");
+                $('#thousand').removeClass("active");
+                $('#limits').val(5);
+            });
+            $('#twofifty').on("click", function() {
+                $('#hundred').removeClass("active");
+                $('#twofifty').toggleClass("active");
+                $('#fivehundred').removeClass("active");
+                $('#thousand').removeClass("active");
+                $('#limits').val(6);
+            });
+            $('#fivehundred').on("click", function() {
+                $('#hundred').removeClass("active");
+                $('#twofifty').removeClass("active");
+                $('#fivehundred').toggleClass("active");
+                $('#thousand').removeClass("active");
+                $('#limits').val(7);
+            });
+            $('#thousand').on("click", function() {
+                $('#hundred').removeClass("active");
+                $('#twofifty').removeClass("active");
+                $('#fivehundred').removeClass("active");
+                $('#thousand').toggleClass("active");
+                $('#limits').val(8);
+            });
+        });
+        </script>
+    </body>
+</html>

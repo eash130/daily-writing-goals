@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../style/writings.css">
+        <title></title>
+    </head>
+    <body>
+        <div class="header">
+            <a href="/" class="logo">Daily Writing Goals</a>
+            <div class="header-right">
+                <a href="/write">Write</a>
+                <a href="/quotes">Favorite Quotes</a>
+                <a href="/resources">Resources</a>
+                <a href="/about">About</a>
+                <a class="login" href="{{link}}">{{status}}</a>
+            </div>
+        </div>
+        <h3>Here are your previous works:</h3>
+        {% for work in writings %}
+            <br>
+            <p>{{work.text}}</p>
+        {% endfor %}
+    </body>
+</html>

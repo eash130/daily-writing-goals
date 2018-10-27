@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel='stylesheet' href='../style/welcome.css'>
+        <title></title>
+    </head>
+    <body>
+        <div class="header">
+            <a href="/" class="logo">Daily Writing Goals</a>
+            <div class="header-right">
+                <a href="/write">Write</a>
+                <a href="/quotes">Favorite Quotes</a>
+                <a href="/resources">Resources</a>
+                <a href="/about">About</a>
+                <a class="login" href="{{link}}">{{status}}</a>
+            </div>
+        </div>
+        <div class = "text">
+            <h2 id="question" style="text-align: center;">Are you unable to find the perfect story?</h2>
+            <br>
+            <div id="submit"><a href="/write"><button>Start Writing Now!</button></a></div>
+            <br>
+        </div>
+        <script>
+        var text = ["Are you struggling to write?", "Is that creative block holding you back?", "Tired of sitting down and being unproductive?", "Out of ideas?", "Are you unable to find the perfect story?"];
+        var counter = 0;
+        var elem = document.getElementById("question");
+        var inst = setInterval(change, 5000);
+
+        function change() {
+            elem.innerHTML = text[counter];
+            counter++;
+            if (counter >= text.length) {
+                counter = 0;
+            }
+        }
+        </script>
+    </body>
+</html>

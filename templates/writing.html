@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../style/writing.css">
+        <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+        function countdown(elementName, minutes, seconds) {
+            var element, endTime, hours, mins, msLeft, time;
+
+            function twoDigits(n) {
+                return (n <= 9 ? "0" + n : n);
+            }
+
+            function updateTimer() {
+                msLeft = endTime - (+new Date);
+                if (msLeft < 1000) {
+                    element.innerHTML = "Time is up!";
+                } else {
+                    time = new Date( msLeft );
+                    hours = time.getUTCHours();
+                    mins = time.getUTCMinutes();
+                    element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+                    setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+                }
+            }
+
+            element = document.getElementById( elementName );
+            endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+            updateTimer();
+        }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <a href="/" class="logo">Daily Writing Goals</a>
+            <div class="header-right">
+                <a href="/write">Write</a>
+                <a href="/quotes">Favorite Quotes</a>
+                <a href="/resources">Resources</a>
+                <a href="/about">About</a>
+                <a class="login" href="{{link}}">{{status}}</a>
+            </div>
+        </div>
+        <br><br>
+        <div class="count" id="{{time}}"></div>
+        <br><br>
+        {% set eyedee = time %}
+        {% if eyedee == "five" %}
+            <script>countdown("five", 5, 0);</script>
+        {% elif eyedee == "ten" %}
+            <script>countdown("ten", 10, 0);</script>
+        {% elif eyedee == "fifteen" %}
+            <script>countdown("fifteen", 15, 0);</script>
+        {% elif eyedee == "thirty" %}
+            <script>countdown("thirty", 30, 0);</script>
+        {% endif %}
+    </body>
+</html>
